@@ -1,5 +1,8 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { myFunction } from './lib/index.js';
+import { registrar } from './lib/index.js';
 
-myFunction();
+const registrarUsuarios = document.getElementById('boton-registrar');
+registrarUsuarios.addEventListener('click', () => {
+  registrar();
+});
