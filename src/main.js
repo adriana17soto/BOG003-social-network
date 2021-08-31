@@ -4,5 +4,8 @@ import { registrar } from './lib/index.js';
 
 const registrarUsuarios = document.getElementById('boton-registrar');
 registrarUsuarios.addEventListener('click', () => {
-  registrar();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  registrar(email, password);
+  
 });
