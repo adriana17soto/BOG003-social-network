@@ -14,3 +14,4 @@ export const registrar = (email, password) => {
       console.log(error);
     }); 
 };
+

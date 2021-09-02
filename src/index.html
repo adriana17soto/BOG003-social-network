@@ -14,18 +14,26 @@
     <header id="container">
       <div class="nav">
        <h1>Luminar</h1>
-       <img id="rym" src="img/logodeRyM.png" alt="Logo" />
+      
       </div>
     </header>
-    <div id="preamble">
-      <h2>Luminar te conecta con mujeres de todo el mundo.</h2>
-    </div>
-    <div id=registration>
-      <input type="name" id="name" placeholder="Nombre" />
-    <input type="email" id="email" placeholder="Correo Electrónico" />
-    <input type="password" id="password" placeholder="Contraseña" />
-    <button id="boton-registrar">Registrar</button>
-  </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="#/">Home</a>
+        </li>
+        <li>
+          <a href="#/registration">Registro</a>
+        </li>
+        <li>
+          <a href="#/login">login</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="root"></div>
+
+    
    
    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
     
@@ -51,8 +59,8 @@
           storageBucket: "luminar-8c629.appspot.com",
           messagingSenderId: "668775264470",
           appId: "1:668775264470:web:247a5185d617fb4ced9977",
-        };
-  
+        }
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
   
