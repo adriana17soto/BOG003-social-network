@@ -5,12 +5,13 @@ export const menu = () => {
         <a href="#/">Home</a>
         </li>
         <li>
-        <a href="#/registration">Registro</a>
+        <a href="#/Registration">Registro</a>
         </li>
         <li>
         <a href="#/login">login</a>
         </li>
     </ul>`
+
 return viewMenu; 
 }
 

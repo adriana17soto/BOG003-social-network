@@ -1,14 +1,16 @@
 import { home  } from "./lib/views/home.js";
+import { registrar } from "./lib/views/Registration.js";
 import{ menu } from "./lib/views/menu.js";
+import { loginCuentaGoogle } from "./lib/views/login.js";
 
 export const changeRouter = (hash) => {
     if(hash === '#/') {
         return showTemplate(hash)
 
-    } else if (hash === '#/menu') {
+    }else if (hash === '#/Registration') {
         return showTemplate(hash)
 
-    }else if (hash === '#/Registration') {
+    }else if (hash === '#/login'){
         return showTemplate(hash)
 
     }else {
@@ -26,6 +28,10 @@ const showTemplate = (hash) => {
         break;
         case '#/Registration':
             containerRoot.appendChild(registrar());
+        break;
+        case '#/login':
+        containerRoot.appendChild(loginCuentaGoogle());
+        break;     
         default:
         containerRoot.innerHTML = `
         <h2>
