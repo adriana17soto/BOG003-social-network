@@ -12,22 +12,16 @@ export const registrar = () => {
     <input type="password" id="password" placeholder="Contraseña" />
     <button id="boton-registrar">Registrar</button>
     </div>
-    `
+    `;
   divRegistrar.innerHTML = templateRegistration;
   setTimeout(() => {
     const registrarUsuarios = document.getElementById('boton-registrar');
 
     registrarUsuarios.addEventListener('click', () => {
-
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       registrarse(email, password);
     });
-
   }, 1000);
   return divRegistrar;
-
-
-
-}
-
+};
