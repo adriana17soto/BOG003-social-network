@@ -1,63 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Ruthie&display=swap');
-      </style>
-    <title>Document</title>
-  </head>
-  <body>
-    <header id="container">
-      <div class="nav">
-       <h1>Luminar</h1>
-       <img id="rym" src="img/logodeRyM.png" alt="Logo" />
-      </div>
-    </header>
-    <div id="preamble">
-      <h2>Luminar te conecta con mujeres de todo el mundo.</h2>
-    </div>
-    <div id=registration>
-      <input type="name" id="name" placeholder="Nombre" />
-    <input type="email" id="email" placeholder="Correo Electrónico" />
-    <input type="password" id="password" placeholder="Contraseña" />
-    <button id="boton-registrar">Registrar</button>
-  </div>
-   
-   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-    
-      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
-    
-      <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
-    
-      <!-- Add Firebase products that you want to use -->
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
-      <script>
-       
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-  
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyD4qBuF6Oe3Tn2OVN-pepBqi-yToXXrrAA",
-          authDomain: "luminar-8c629.firebaseapp.com",
-          projectId: "luminar-8c629",
-          storageBucket: "luminar-8c629.appspot.com",
-          messagingSenderId: "668775264470",
-          appId: "1:668775264470:web:247a5185d617fb4ced9977",
-        };
-  
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-  
-      </script>
-      <script type="module" src="main.js"></script>
 
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ruthie&display=swap');
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <header id="container">
+    <div class="nav">
+      <h1>Luminar</h1>
+
+    </div>
+  </header>
+  <div id="root">
+    <nav>
+      <ul>
+        <li>
+          <a href="#/">Home</a>
+        </li>
+        <li>
+          <a href="#/Registration">Registro</a>
+        </li>
+        <li>
+          <a href="#/login">login</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+
+
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  <script>
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD4qBuF6Oe3Tn2OVN-pepBqi-yToXXrrAA",
+      authDomain: "luminar-8c629.firebaseapp.com",
+      projectId: "luminar-8c629",
+      storageBucket: "luminar-8c629.appspot.com",
+      messagingSenderId: "668775264470",
+      appId: "1:668775264470:web:247a5185d617fb4ced9977",
+    }
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+  </script>
+  <script type="module" src="main.js"></script>
+  
+
+</body>
+
 </html>
