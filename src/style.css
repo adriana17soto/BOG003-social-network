@@ -24,10 +24,29 @@ body {
     align-items: center;
     flex-direction: column;
   }
-  
-  #boton-registrar {
+  #root{
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+  #container-login{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column ;
+    border-radius: 10%;
+    border: medium solid #B5EAEA;
+    width: 80%;
+    height: 200%;  
+    padding: 10px 15px;
+     
+  }
+
+  #boton-registrar, #boton-registrarInicial, #boton-ingresar, #boton-google {
     background: #ffbcbc;
-    color: white;
+    color: #837C7C;
+    width: 78%;
     font-size: 15px;
     font-weight: bold;
     padding: 10px 15px;
@@ -35,6 +54,8 @@ body {
     cursor: pointer;
     justify-content: center;
     display: flex;
+    margin-top: 1.5%;
+    border: none;
   }
   
   #name,
@@ -48,5 +69,9 @@ body {
     cursor: pointer;
     justify-content: center;
     display: flex;
+    border:none;
+    margin-top: 1.5%;
+    border-radius: 5%;
   }
+
   

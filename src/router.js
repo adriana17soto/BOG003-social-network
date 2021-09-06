@@ -5,10 +5,11 @@ import { loginCuentaGoogle } from './lib/views/login.js';
 
 const showTemplate = (hash) => {
   const containerRoot = document.getElementById('root');
-  containerRoot.innerHTML = menu();
+  /* containerRoot.innerHTML = menu(); */
 
   switch (hash) {
     case '#/':
+      console.log('hola');
       containerRoot.appendChild(loginCuentaGoogle());
       break;
     case '#/Registration':
@@ -26,6 +27,7 @@ const showTemplate = (hash) => {
   }
 };
 export const changeRouter = (hash) => {
+  console.log(hash);
   if (hash === '#/') {
     showTemplate(hash);
   } else if (hash === '#/Registration') {

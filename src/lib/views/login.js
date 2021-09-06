@@ -1,20 +1,23 @@
 import { login } from './configureFirebase.js';
 
 export const loginCuentaGoogle = () => {
-  const divlogin = document.createElement('div');
   const templateGoogle = `
+  <div > 
+  <div id='container-login'>
   <input type="email" id="email" placeholder="Correo Electrónico" />
-  <input type="password" id="password" placeholder="Contraseña" />
+  <input type="password" id="password" placeholder="Contraseña" />  
+  <button id="boton-ingresar">Ingresar</button>
   <button id="boton-google">Ingresar con Google</button>
+  <button id="boton-registrarInicial"><a href="#/Registration">Registro</a></button>
+  </div>
+  </div>
   `;
 
-  divlogin.innerHTML = templateGoogle;
-  /* setTimeout(() => { */
-  const registrarUsuarios = divlogin.querySelector('#boton-google');
-  registrarUsuarios.addEventListener('click', () => {
-    login();
-  });
-
-  /* }, 1000); */
-  return divlogin;
+  setTimeout(() => {
+    const registrarUsuarios = document.querySelector('#boton-google');
+    registrarUsuarios.addEventListener('click', () => {
+      login();
+    });
+  }, 1000);
+  return templateGoogle;
 };
