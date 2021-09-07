@@ -5,7 +5,7 @@ import { loginCuentaGoogle } from './lib/views/login.js';
 
 const showTemplate = (hash) => {
   const containerRoot = document.getElementById('root');
-  /* containerRoot.innerHTML = menu(); */
+  containerRoot.innerHTML = '';
 
   switch (hash) {
     case '#/':
