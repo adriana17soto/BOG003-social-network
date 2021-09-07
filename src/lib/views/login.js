@@ -1,4 +1,4 @@
-import { login } from './configureFirebase.js';
+import { login, ingreso } from './configureFirebase.js';
 
 export const loginCuentaGoogle = () => {
   const templateGoogle = `
@@ -13,8 +13,16 @@ export const loginCuentaGoogle = () => {
   <button id="boton-registrarInicial"><a href="#/Registration">Registro</a></button>
   </div>
   `;
+  
+  
 
   setTimeout(() => {
+
+    const ingresoUsuarios = document.querySelector('#boton-ingresar');
+    ingresoUsuarios.addEventListener('click', () => {
+      ingreso();
+    });
+
     const registrarUsuarios = document.querySelector('#boton-google');
     registrarUsuarios.addEventListener('click', () => {
       login();
@@ -22,4 +30,3 @@ export const loginCuentaGoogle = () => {
   }, 1000);
   return templateGoogle;
 };
- 

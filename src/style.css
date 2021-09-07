@@ -96,4 +96,13 @@ body {
     margin-bottom: 9%;
   }
 
-  
+  .wrapp-input{
+    background:#f38ba0;
+  }
+
+  .icon-eye{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    cursor: pointer;
+  }

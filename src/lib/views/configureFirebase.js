@@ -6,14 +6,45 @@ export const registrarse = (email, password) => {
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      /* console.log(user); */
+       console.log(user); 
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      /* console.log(error); */
+      console.log(error); 
     });
 };
+export const ingreso = (email, password) => {
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+}
+
+const observador = () =>{
+  
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log('existe')
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      var uid = user.uid;
+      // ...
+    } else {
+      console.log('No existe')
+      // User is signed out
+      // ...
+    }
+  });
+}
+observador();
 
 export const login = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -29,6 +60,8 @@ export const login = () => {
       // The signed-in user info.
       let user = result.user;
       // ...
+      console.log(user);
+      console.log(token)
     })
     .catch((error) => {
     // Handle Errors here.
@@ -39,5 +72,17 @@ export const login = () => {
       // The firebase.auth.AuthCredential type that was used.
       let credential = error.credential;
       // ...
+      console.log(error)
     });
 };
+
+
+/*export const cerrar = () => {
+  firebase.auth().signOut()
+  .then((closed) => {
+    console.log('saliendo..')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+}*/
