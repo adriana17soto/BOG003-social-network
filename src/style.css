@@ -6,6 +6,7 @@ body {
     font-family: ruthie;
     font-size: 80px;
     color: #f38ba0;
+    margin: 5%;
   }
   #preamble{
     display: flex;
@@ -28,6 +29,7 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
+     margin-left: 8%;
   }
   #container-login{
     display:flex;
@@ -42,11 +44,28 @@ body {
     padding: 10px 15px;
      
   }
-
-  #boton-registrar, #boton-registrarInicial, #boton-ingresar, #boton-google {
+  #boton-registrarInicial{
     background: #ffbcbc;
     color: #837C7C;
-    width: 78%;
+    width: 73%;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    margin-top: 3%;
+    border: none;
+    margin-left: 10%;
+  }
+
+  #boton-registrar, #boton-ingresar, #boton-google {
+    background: #ffbcbc;
+    color: #837C7C;
+    width: 92%;
     font-size: 15px;
     font-weight: bold;
     padding: 10px 15px;
@@ -54,7 +73,7 @@ body {
     cursor: pointer;
     justify-content: center;
     display: flex;
-    margin-top: 1.5%;
+    margin-top: 3%;
     border: none;
   }
   
@@ -70,8 +89,11 @@ body {
     justify-content: center;
     display: flex;
     border:none;
-    margin-top: 1.5%;
-    border-radius: 5%;
+    margin-top: 5%;
+    border-radius: 10%;
+  }
+  #password{
+    margin-bottom: 9%;
   }
 
   

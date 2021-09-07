@@ -7,9 +7,9 @@ export const loginCuentaGoogle = () => {
   <input type="email" id="email" placeholder="Correo Electrónico" />
   <input type="password" id="password" placeholder="Contraseña" />  
   <button id="boton-ingresar">Ingresar</button>
-  <button id="boton-google">Ingresar con Google</button>
-  <button id="boton-registrarInicial"><a href="#/Registration">Registro</a></button>
+  <button id="boton-google">Ingresar con Google</button>  
   </div>
+  <button id="boton-registrarInicial"><a href="#/Registration">Registro</a></button>
   </div>
   `;
 
