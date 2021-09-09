@@ -1,9 +1,8 @@
 import { home } from './lib/views/home.js';
-import { registrar } from './lib/views/Registration.js';
-import { menu } from './lib/views/menu.js';
+import { registrar } from './lib/views/registration.js';
 import { loginCuentaGoogle } from './lib/views/login.js';
 
-const showTemplate = (hash) => {
+export const changeRouter = (hash) => {
   const containerRoot = document.getElementById('root');
   containerRoot.innerHTML = '';
 
@@ -12,7 +11,7 @@ const showTemplate = (hash) => {
       console.log('hola');
       containerRoot.appendChild(loginCuentaGoogle());
       break;
-    case '#/Registration':
+    case '#/registration':
       containerRoot.appendChild(registrar());
       break;
     case '#/home':
@@ -26,15 +25,15 @@ const showTemplate = (hash) => {
         `;
   }
 };
-export const changeRouter = (hash) => {
+/*export const changeRouter = (hash) => {
   console.log(hash);
   if (hash === '#/') {
     showTemplate(hash);
-  } else if (hash === '#/Registration') {
+  } else if (hash === '#/registration') {
     showTemplate(hash);
   } else if (hash === '#/home') {
     showTemplate(hash);
   } else {
     showTemplate(hash);
   }
-};
+};*/
