@@ -4,6 +4,12 @@ export const registrar = () => {
   const divRegistrar = document.createElement('div');
   const templateRegistration = `
   <div id="preamble">
+  <header id="container">
+    <div class="nav">
+      <h1>Luminar</h1>
+
+    </div>
+  </header>
     <h2>Luminar te conecta con mujeres de todo el mundo.</h2>
     </div>
     <div id="registration">

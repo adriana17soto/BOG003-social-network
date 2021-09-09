@@ -9,10 +9,10 @@ const showTemplate = (hash) => {
 
   switch (hash) {
     case '#/':
-      console.log('hola');
+      console.log(hash);
       containerRoot.appendChild(loginCuentaGoogle());
       break;
-    case '#/Registration':
+    case '#/registration':
       containerRoot.appendChild(registrar());
       break;
     case '#/home':
@@ -27,10 +27,10 @@ const showTemplate = (hash) => {
   }
 };
 export const changeRouter = (hash) => {
-  console.log(hash);
+  console.log('holi blu', hash);
   if (hash === '#/') {
     showTemplate(hash);
-  } else if (hash === '#/Registration') {
+  } else if (hash === '#/registration') {
     showTemplate(hash);
   } else if (hash === '#/home') {
     showTemplate(hash);

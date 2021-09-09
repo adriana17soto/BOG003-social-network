@@ -15,7 +15,6 @@ export const registrarse = (email, password) => {
     });
 };
 export const ingreso = (email, password) => {
-
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
@@ -26,24 +25,24 @@ export const ingreso = (email, password) => {
       var errorCode = error.code;
       var errorMessage = error.message;
     });
-}
+};
 
-const observador = () =>{
-  
+const observador = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log('existe')
+      console.log('existe');
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       var uid = user.uid;
       // ...
     } else {
-      console.log('No existe')
+      console.log('No existe');
       // User is signed out
       // ...
     }
   });
-}
+};
+
 observador();
 
 export const login = () => {
@@ -61,7 +60,7 @@ export const login = () => {
       let user = result.user;
       // ...
       console.log(user);
-      console.log(token)
+      console.log(token);
     })
     .catch((error) => {
     // Handle Errors here.
@@ -76,13 +75,12 @@ export const login = () => {
     });
 };
 
-
-/*export const cerrar = () => {
+export const cerrar = () => {
   firebase.auth().signOut()
-  .then((closed) => {
-    console.log('saliendo..')
-  })
-  .catch((error) => {
-    console.log(error)
-  })
-}*/
+    .then((closed) => {
+      console.log('saliendo..');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
