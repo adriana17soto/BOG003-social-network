@@ -1,9 +1,8 @@
 import { home } from './lib/views/home.js';
-import { registrar } from './lib/views/Registration.js';
-import { menu } from './lib/views/menu.js';
+import { registrar } from './lib/views/registration.js';
 import { loginCuentaGoogle } from './lib/views/login.js';
 
-const showTemplate = (hash) => {
+export const changeRouter = (hash) => {
   const containerRoot = document.getElementById('root');
   containerRoot.innerHTML = '';
 
@@ -26,8 +25,8 @@ const showTemplate = (hash) => {
         `;
   }
 };
-export const changeRouter = (hash) => {
-  console.log('holi blu', hash);
+/*export const changeRouter = (hash) => {
+  console.log(hash);
   if (hash === '#/') {
     showTemplate(hash);
   } else if (hash === '#/registration') {
@@ -37,4 +36,4 @@ export const changeRouter = (hash) => {
   } else {
     showTemplate(hash);
   }
-};
+};*/

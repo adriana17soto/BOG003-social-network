@@ -1,4 +1,4 @@
-import { registrarse } from './configureFirebase.js';
+import { registrarse} from './configureFirebase.js';
 
 export const registrar = () => {
   const divRegistrar = document.createElement('div');
@@ -14,9 +14,9 @@ export const registrar = () => {
     </div>
     <div id="registration">
     <input type="name" id="name" placeholder="Nombre" />
-    <input type="email" id="email" placeholder="Correo Electrónico" />
-    <input type="password" id="password" placeholder="Contraseña" />
-    <button id="boton-registrar">Registrar</button>
+    <input type="email" id="email2" placeholder="Correo Electrónico" />
+    <input type="password" id="password2" placeholder="Contraseña" />
+    <button id="boton-registrar"><a href="#/home">Registrar</a></button>
     </div>
     `;
   divRegistrar.innerHTML = templateRegistration;

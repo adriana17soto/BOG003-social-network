@@ -1,7 +1,6 @@
 import { login, ingreso } from './configureFirebase.js';
 
-export const loginCuentaGoogle = () => {
-  const divLogin = document.createElement('div');
+export const loginCuentaGoogle = () => { 
   const templateGoogle = `
   <header id="container">
     <div class="nav">
@@ -15,12 +14,11 @@ export const loginCuentaGoogle = () => {
   <input type="password" id="password" placeholder="Contraseña" />  
   <button id="boton-ingresar"><a href="#/home">Ingresar</a></button>
   <button id="boton-google"><a href="#/home">Ingresar con Google</a></button>
-  
+  <h2 id="login"></h2>
   </div>
-  <button id="boton-registrarInicial"><a href="#/Registration">Registro</a></button>
+  <button id="boton-registrarInicial"><a href="#/registration">Registro</a></button>
   </div>
   `;
-  divLogin.innerHTML = templateGoogle;
 
   setTimeout(() => {
     const ingresoUsuarios = document.querySelector('#boton-ingresar');
@@ -33,6 +31,6 @@ export const loginCuentaGoogle = () => {
       login();
     });
   }, 1000);
-  
+
   return templateGoogle;
 };

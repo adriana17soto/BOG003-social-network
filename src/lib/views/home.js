@@ -1,6 +1,4 @@
- import { cerrar } from "./configureFirebase.js";
-// import { login } from './configureFirebase.js';
-// import { changeRouter } from "";
+import { cerrar } from "./configureFirebase.js";
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -17,13 +15,14 @@ export const home = () => {
     <button id="boton-cerrar">cerrar sesion</button>
     `;
   divHome.innerHTML = templateHOme;
-  const cerrarSesion = divHome.querySelector('#boton-cerrar');
-  cerrarSesion.addEventListener('click', () => {
-    // console.log('home1', window.location.hash);
-    cerrar();
-    window.location.hash = '#/';
-    // changeRouter('#/');
-  });
 
-  return divHome;
+
+ // setTimeout(() => {  
+    const cerrarUsuarios = divHome.querySelector('#boton-cerrar');
+    cerrarUsuarios.addEventListener('click', () => {
+      window.location.hash = "#/"
+     cerrar();
+    });
+ // }, 1000);
+    return divHome;
 };

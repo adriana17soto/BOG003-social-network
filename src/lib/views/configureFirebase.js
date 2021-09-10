@@ -15,28 +15,35 @@ export const registrarse = (email, password) => {
     });
 };
 export const ingreso = (email, password) => {
+  
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
       // ...
+      console.log(user);
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
+      alert(errorMessage);
     });
 };
 
 const observador = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log('existe');
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       var uid = user.uid;
+      var providerData = user.providerData;
+      console.log(user);
       // ...
     } else {
-      console.log('No existe');
+      document.getElementById("login").innerHTML = "No logeado";
       // User is signed out
       // ...
     }
@@ -75,12 +82,13 @@ export const login = () => {
     });
 };
 
+
 export const cerrar = () => {
   firebase.auth().signOut()
-    .then((closed) => {
-      console.log('saliendo..');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+  .then((close) => {
+    console.log('saliendo..')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+}
