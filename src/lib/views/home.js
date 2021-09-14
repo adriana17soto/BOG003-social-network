@@ -1,28 +1,39 @@
-import { cerrar } from "./configureFirebase.js";
+import { closeSession } from '../index.js';
 
 export const home = () => {
   const divHome = document.createElement('div');
-  const templateHOme = `
-  <header id="container">
-    <div class="nav">
-      <h1>Luminar</h1>
-
+  const templateHome = `
+    <header id="container">
+      <div class="nav">
+        <h1>Luminar</h1>
+      </div>
+      <nav>
+        <button id="boton-logout" type="button">Cerrar sesión</button>
+        </nav>
+    </header>
+    <div id="prueba"></div>
+    <div id="publicaciones">
+      <input type="text" id="publicar" placeholder="¿Qué quieres compartir?" />
+      <button id="boton-publicar">Publicar</button>
     </div>
-  </header>
-    <h1>
-      Hola mundirijillo
-    </h1>
-    <button id="boton-cerrar">cerrar sesion</button>
-    `;
-  divHome.innerHTML = templateHOme;
+   </div>
+    <footer>@Luminar 2021</footer>
+  `;
 
+  divHome.innerHTML = templateHome;
 
- // setTimeout(() => {  
-    const cerrarUsuarios = divHome.querySelector('#boton-cerrar');
-    cerrarUsuarios.addEventListener('click', () => {
-      window.location.hash = "#/"
-     cerrar();
+  const user = firebase.auth().currentUser;
+  console.log(user);
+
+  const pruebaName = divHome.querySelector('#prueba');
+  pruebaName.innerHTML = `Hola ${user.displayName}`;
+
+  const logOut = divHome.querySelector('#boton-logout');
+  logOut.addEventListener('click', () => {
+    closeSession().then(() => {
+      window.location.hash = '#/login';
     });
- // }, 1000);
-    return divHome;
+  });
+
+  return divHome;
 };

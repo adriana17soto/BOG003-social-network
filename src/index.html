@@ -1,40 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css" />
+    <style> @import url("https://fonts.googleapis.com/css2?family=Ruthie&display=swap");
+    </style>
+    <title>Luminar</title>
+    <link rel="icon" href="\BOG003-social-network\src\lib\views\img\woman.png"/>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Ruthie&display=swap');
-  </style>
-  <title>Document</title>
-</head>
-
-<body>
-  
-  <div id="root">
-    <nav>
-      <ul>
-        <li>
-          <a href="#/">login</a>
-        </li>
-        <li>
-          <a href="#/registration">Registro</a>
-           </li>
-        <li>
-          <a href="#/home">home</a>
-        </li>
-      </ul>
-    </nav>
-
-  </div>
-
-
-
-  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  <body>
+      <section>
+      <div id="root"></div>
+    </section>
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
@@ -62,11 +44,10 @@
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    const db=firebase.firestore();
+    
 
   </script>
   <script type="module" src="main.js"></script>
-  
-
-</body>
-
+  </body>
 </html>

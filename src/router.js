@@ -1,14 +1,18 @@
-import { home } from './lib/views/home.js';
-import { registrar } from './lib/views/registration.js';
 import { loginCuentaGoogle } from './lib/views/login.js';
+import { registrar } from './lib/views/registration.js';
+import { home } from './lib/views/home.js';
 
 export const changeRouter = (hash) => {
   const containerRoot = document.getElementById('root');
   containerRoot.innerHTML = '';
 
   switch (hash) {
+    case '':
+    case '#':
     case '#/':
-      console.log(hash);
+      containerRoot.appendChild(loginCuentaGoogle());
+      break;
+    case '#/login':
       containerRoot.appendChild(loginCuentaGoogle());
       break;
     case '#/registration':
@@ -19,21 +23,9 @@ export const changeRouter = (hash) => {
       break;
     default:
       containerRoot.innerHTML = `
-        <h2>
-          No existe
-        </h2>
-        `;
+      <h2>
+        No existe
+      </h2>
+      `;
   }
 };
-/*export const changeRouter = (hash) => {
-  console.log(hash);
-  if (hash === '#/') {
-    showTemplate(hash);
-  } else if (hash === '#/registration') {
-    showTemplate(hash);
-  } else if (hash === '#/home') {
-    showTemplate(hash);
-  } else {
-    showTemplate(hash);
-  }
-};*/

@@ -1,108 +1,177 @@
 body {
-    background-color: #edf6e5;
-    margin: 0px;
+  background-color: #edf6e5;
+  margin: 0px;
+  height: 100%;
   }
-  h1 {
-    font-family: ruthie;
-    font-size: 80px;
-    color: #f38ba0;
-    margin: 5%;
-  }
-  #preamble{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 10%;
-    
-  }
-  h2 {
-    display: flex;
-    text-align: center;
-  }
-  #registration {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  #root{
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-     margin-left: 8%;
-  }
-  #container-login{
-    display:flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-direction: column ;
-    border-radius: 10%;
-    border: medium solid #B5EAEA;
-    width: 80%;
-    height: 200%;  
-    padding: 10px 15px;
-     
-  }
-  #boton-registrarInicial{
-    background: #ffbcbc;
-    color: #837C7C;
-    width: 73%;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    display: flex;
-    margin-top: 3%;
-    border: none;
-    margin-left: 7%;
-  }
-
-  #boton-registrar, #boton-ingresar, #boton-google {
-    background: #ffbcbc;
-    color: #837C7C;
-    width: 92%;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    justify-content: center;
-    display: flex;
-    margin-top: 3%;
-    border: none;
-  }
+h1 {
+  font-family: ruthie;
+  font-size: 60px;
+  color: #f38ba0;
+  margin: 3px;
+}
+#root{
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+#container{
+  border-bottom: thick solid #B5EAEA;
+  display: flex;
+  height: 5%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
   
-  #name,
-  #email,
-  #password {
-    background: #dcd7d7;
-    color: white;
-    font-size: 15px;
+}
+.image-woman-login{
+  width: 40%;
+  margin-top: 5px;
+}
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+  h2 {
+  font-family: 'Courier New', Courier, monospace;  
+  display: flex;
+  text-align: center;
+  margin: auto;
+  padding: auto;
+  width: 80%;
+}
+
+.text-luminar{
+  color:#494747;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 18px;
+
+}
+
+#container-login{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10%;
+  border: medium solid #B5EAEA;
+  width: 80%;
+  margin-top: 15px;
+  padding: 10px 15px;
+  margin: auto;
+}
+
+#name,
+#email,
+#password,
+#passwordConf {
+  background: #dcd7d7;
+  color: black;
+  font-size: 16px;
+  border-radius: 7px;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  width: 75%;
+  margin: auto;
+  margin-top: 7px;
+  border-color: #494747;;
+  
+ }
+ #boton-registrar,
+ #boton-ingresar,
+ #boton-google,
+ #boton-go-register {
+   background: #ffbcbc;
+   color: #837C7C;
+   font-size: 18px;
+   margin-bottom: 2rem;
+   font-weight: bold;
+   border-radius: 7px;
+   border: none;
+   margin: auto;
+   margin-top: 5px;
+   width: 85%;
+   cursor: pointer;
+   height: 40px;
+   }
+   #boton-googleR,
+   #boton-go-register, 
+   #boton-go-ingresar{
+    background: #ffbcbc;
+    color: #837C7C;
+    font-size: 18px;
+    margin-bottom: 2rem;
     font-weight: bold;
-    padding: 10px 15px;
+    border-radius: 7px;
+    border: none;
+    margin: auto;
+    margin-top: 10px;
+    width: 70%;
     cursor: pointer;
-    justify-content: center;
-    display: flex;
-    border:none;
-    margin-top: 5%;
-    border-radius: 10%;
-  }
-  #password{
-    margin-bottom: 9%;
-  }
+    height: 40px;
+    }
+    #boton-go-register a {
+      color: #837C7C;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    #boton-go-ingresar a {
+      color: #837C7C;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+   footer {
+    color: #837C7C;
+    font-size: 14px;
+    font-weight: bold;
+    border-top: thick solid #ffff;
+    margin-top: 10px;
+   }
 
-  .wrapp-input{
-    background:#f38ba0;
-  }
-
-  .icon-eye{
+   .icon-eye{
     position: absolute;
-    right: 0;
-    top: 50%;
+    right: 20%;
+    top: 59%;
     cursor: pointer;
   }
+  #publicaciones {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 10%;
+      border: medium solid #B5EAEA;
+      width: 80%;
+      margin-top: 15px;
+      padding: 10% 15px;
+      margin: auto;
+    }
+  #publicar{
+    display: flex;
+    height: 150px;;
+    align-self: stretch;
+    height: 100%;
+
+    border: none;
+  }
+
+@media (min-width:768px){
+    .divFlex {
+        height: 100%;
+        align-items: center;
+    }
+}
