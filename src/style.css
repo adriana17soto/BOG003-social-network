@@ -133,6 +133,25 @@ h1 {
       font-weight: bold;
       text-decoration: none;
     }
+    #boton-close {
+      font-size: 10px;      
+      text-decoration: none;
+      position: absolute;
+      width: 40px;
+      top: 85px;
+      left: 320px;
+      right: 10px;
+      background: #ffbcbc;
+      color: #837C7C;  
+      margin-bottom: 2rem;
+      font-weight: bold;
+      border-radius: 7px;
+      border: none;
+      margin: auto;
+      margin-top: 5px;
+      cursor: pointer;   
+    
+    }
    footer {
     color: #837C7C;
     font-size: 14px;

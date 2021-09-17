@@ -66,7 +66,7 @@ export const registrar = () => {
         }).catch((error) => {
         /* validaciones de firebase */
           const errorCode = error.code;
-          switch (errorCode) {
+            switch (errorCode) {
             case 'auth/invalid-email':
               messageContainer.setAttribute('class', 'error');
               messageContainer.innerHTML = '❌ Ingrese un correo válido';

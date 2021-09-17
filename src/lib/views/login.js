@@ -27,59 +27,61 @@ export const loginCuentaGoogle = () => {
   const divLogin = document.createElement('div');
   divLogin.innerHTML = templateGoogle;
 
-  const emailSignIn = divLogin.querySelector("#email");
-  const passwordSignIn = divLogin.querySelector("#password");
-  const btnSignIn = divLogin.querySelector("#boton-ingresar");
-  const messageContainer = divLogin.querySelector("#message");
+  const emailSignIn = divLogin.querySelector('#email');
+  const passwordSignIn = divLogin.querySelector('#password');
+  const btnSignIn = divLogin.querySelector('#boton-ingresar');
+  const messageContainer = divLogin.querySelector('#message');
 
-  btnSignIn.addEventListener("click", (e) => {
+  btnSignIn.addEventListener('click', (e) => {
     e.preventDefault();
     const email = emailSignIn.value;
     const password = passwordSignIn.value;
 
     loginUsers(email, password)
       .then(() => {
-        window.location.hash = "#/home";
+        window.location.hash = '#/home';
       })
       .catch((error) => {
         /* validaciones de firebase */
         const errorCode = error.code;
         switch (errorCode) {
-          case "auth/user-not-found":
-            messageContainer.setAttribute("class", "error");
-            messageContainer.innerHTML = "❌ Usuario no registrado";
+          case 'auth/user-not-found':
+            messageContainer.setAttribute('class', 'error');
+            messageContainer.innerHTML = '❌ Usuario no registrado';
             break;
 
-          case "auth/wrong-password":
-            messageContainer.setAttribute("class", "error");
-            messageContainer.innerHTML = "❌ Contraseña incorrecta";
+          case 'auth/wrong-password':
+            messageContainer.setAttribute('class', 'error');
+            messageContainer.innerHTML = '❌ Contraseña incorrecta';
             break;
 
-          case "auth/invalid-email":
-            messageContainer.setAttribute("class", "error");
-            messageContainer.innerHTML = "❌ Correo inválido";
+          case 'auth/invalid-email':
+            messageContainer.setAttribute('class', 'error');
+            messageContainer.innerHTML = '❌ Correo inválido';
             break;
+          default:
+            // ok
         }
       });
   });
 
   /* Quitar el mensaje de error cuando el usuario escriba */
   const clearErrorMessage = (e) => {
-    if (e.target.tagName === "INPUT") {
-      messageContainer.innerHTML = "";
+    if (e.target.tagName === 'INPUT') {
+      messageContainer.innerHTML = '';
     }
   };
 
-  const form = divLogin.querySelector("form");
-  form.addEventListener("keyup", clearErrorMessage);
+  const form = divLogin.querySelector('form');
+  form.addEventListener('keyup', clearErrorMessage);
 
-  const btnGoogle = divLogin.querySelector("#boton-google");
+  const btnGoogle = divLogin.querySelector('#boton-google');
 
-  btnGoogle.addEventListener("click", (e) => {
+  btnGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     loginGoogle()
       .then(() => {
-        window.location.hash = "#/home";
+        window.location.hash = '#/home';
       })
       .catch((error) => {
         console.log(error.message);
@@ -88,7 +90,7 @@ export const loginCuentaGoogle = () => {
   return divLogin;
 };
 
-/*   const ingresoUsuarios = document.querySelector('#boton-ingresar');
+/* const ingresoUsuarios = document.querySelector('#boton-ingresar');
 ingresoUsuarios.addEventListener('click', () => {
   ingreso();
 });
