@@ -26,32 +26,34 @@ export const createpost = (describe, identuser, username) => firebase.firestore(
     likes: [],
   });
 
-export const post = () => {
+/* export const post = () => {
   const db = firebase.firestore();
   db.collection('users').add({
     nameUser: 'user',
     uidUser: 'uid',
 
-  })
-    .then((docRef) => {
-      // console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-      // console.error("Error adding document: ", error);
-    });
-};
+  });
+  /* .then((docRef) => {
+     // console.log("Document written with ID: ", docRef.id);
+   })
+   .catch((error) => {
+     // console.error("Error adding document: ", error);
+   });
+}; */
 
-  /* const db = firebase.firestore();
+export const getPost = () => firebase.firestore().collection('posts');
+
+/* const db = firebase.firestore();
 db.collection("users").add({
-  first: "Ada",
-  last: "Lovelace",
-  born: 1815
+first: "Ada",
+last: "Lovelace",
+born: 1815
 })
 .then((docRef) => {
-  console.log("Document written with ID: ", docRef.id);
+console.log("Document written with ID: ", docRef.id);
 })
 .catch((error) => {
-  console.error("Error adding document: ", error);
+console.error("Error adding document: ", error);
 });
 
- */
+*/

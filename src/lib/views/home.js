@@ -1,4 +1,4 @@
-import { closeSession, createpost, post } from '../index.js';
+import { closeSession, createpost, getPost } from '../index.js';
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -17,13 +17,14 @@ export const home = () => {
       </textarea>
       <button id="boton-publicar">Publicar</button>
     </div>
+    <div id="container-posts"></div>
    </div>
     <footer>@Luminar 2021</footer>
   `;
   divHome.innerHTML = templateHome;
 
   const user = firebase.auth().currentUser;
-  console.log(user);
+  // console.log(user);
 
   const close = divHome.querySelector('#boton-close');
   close.addEventListener('click', () => {
@@ -42,32 +43,27 @@ export const home = () => {
     console.log(textcontent);
     const id = firebase.auth().currentUser.uid;
     const nameUs = firebase.auth().currentUser.displayName;
-    post();
 
     await createpost(textcontent, id, nameUs)
       .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-        console.log('el post fue creado con exito'); 
+        // getPost();
+        divHome.querySelector('#publicar').value = '';
+        console.log('Document written with ID: ', docRef.id);
+        console.log('el post fue creado con exito');
       })
       .catch((error) => {
-        console.error("Error adding document: ", error);
+        alert('Lo sentimos no pudimos agregar tu post, intenta de nuevo');
+        divHome.querySelector('#publicar').value = '';
+        console.error('Error adding document: ', error);
       });
-    // const view = db.collection('posts');
     // console.log(view);
+  });
+
+  getPost().onSnapshot((response) => {
+    response.forEach((doc) => {
+   console.log(doc);
+    });
   });
 
   return divHome;
 };
-/* const db = firebase.firestore();
-  const postForm = document.getElementById('#publicar').ariaValueText;
-  console.log(postForm);
-  console.log(db); */
-/* postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-     const contentPost = postForm['publicar'].value; const
-     response = db.colection('post').doc().set({
-      contentPost,
-    });
-    console.log(response);
-    console.log(contentPost);
-  }); */
