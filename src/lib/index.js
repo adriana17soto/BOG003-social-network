@@ -17,15 +17,15 @@ export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
-export const createpost = (describe, identuser, username) => firebase.firestore().collection('posts')
+export const createpost = (describe, identuser, username, dataTime) => firebase.firestore().collection('posts')
   .add({
     content: describe,
     userName: username,
     userId: identuser,
-    createdAt: new Date(),
+    createdAt: dataTime,
     likes: [],
-  });
 
+  });
 /* export const post = () => {
   const db = firebase.firestore();
   db.collection('users').add({
