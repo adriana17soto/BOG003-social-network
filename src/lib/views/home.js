@@ -19,6 +19,7 @@ export const home = () => {
     </div>
     <div id="container-posts"></div>
    </div>
+   <div id="publication-container"></div>
     <footer>@Luminar 2021</footer>
   `;
   divHome.innerHTML = templateHome;
