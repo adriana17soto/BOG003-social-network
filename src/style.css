@@ -194,3 +194,22 @@ h1 {
         align-items: center;
     }
 }
+
+.card-posts{
+  margin: 10px;
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #f5fdfd;
+  height: auto;
+  width: 90%;
+  border: medium solid #B5EAEA;
+  border-radius: 10px;
+}
+
+.card-posts #postDescription{
+  margin: 10px;
+  color: rgb(132, 132, 133);
+  text-align: justify;
+
+}
