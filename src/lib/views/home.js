@@ -44,10 +44,16 @@ export const home = () => {
     console.log(textcontent);
     const id = firebase.auth().currentUser.uid;
     const nameUs = firebase.auth().currentUser.displayName;
-
+    // const dataTime = new Date().getTime();
+    // const dataTime = new Date(time.toDate()).toDateString();
+   // const reacDataTime = new Date(dataTime);
+   // const timeOk = reacDataTime.toLocaleString();
+    
+    
     await createpost(textcontent, id, nameUs)
       .then((docRef) => {
         // getPost();
+      
         divHome.querySelector('#publicar').value = '';
         console.log('Document written with ID: ', docRef.id);
         console.log('el post fue creado con exito');
@@ -61,10 +67,24 @@ export const home = () => {
   });
 
   getPost().onSnapshot((response) => {
+    const containerPosts = divHome.querySelector('#publicar');
+    containerPosts.innerHTML = '';
+    const divPosts = divHome.querySelector('#container-posts');
+    divPosts.innerHTML = '';
     response.forEach((doc) => {
-   console.log(doc);
+      divPosts.innerHTML += ` 
+      <h4>${doc.data().userName}</h4>
+      <p id='postDescription'>${doc.data().content}</p>
+      <p>${doc.data().createdAt.toDate()}</p>
+      `;
+      console.log(doc);
     });
   });
+  /* getPost().get((Response) => {
+     Response.forEach((doc) => {
+      console.log(doc);
+     });
+   }); */
 
   return divHome;
 };

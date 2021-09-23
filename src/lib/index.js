@@ -24,16 +24,8 @@ export const createpost = (describe, identuser, username) => firebase.firestore(
     userId: identuser,
     createdAt: new Date(),
     likes: [],
+
   });
-  /* .then((docRef) => {
-      const nameDocument = docRef.id;
-      // console.log("Document written with ID: ", docRef.id);
-      console.log('el post fue creado con exito');
-      return console.log("Document written with ID: ", nameDocument);
-    })
-    .catch((error) => {
-      console.error("Error adding document: ", error);
-    }); */
 /* export const post = () => {
   const db = firebase.firestore();
   db.collection('users').add({
