@@ -213,3 +213,8 @@ h1 {
   text-align: justify;
 
 }
+
+.edit-btn .delete-btn .like-btn .post-btn{
+  width: 30px;
+}
+
