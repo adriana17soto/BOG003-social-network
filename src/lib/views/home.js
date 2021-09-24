@@ -15,7 +15,7 @@ export const home = () => {
     <div id="publicaciones">
       <textarea id="publicar" placeholder="¿Qué quieres compartir?" >
       </textarea>
-      <button id="boton-publicar">Publicar</button>
+      <img  id="boton-publicar" src="./lib/views/img/publicar1.png" alt="">
     </div>
     <div id="container-posts"></div>
    </div>
@@ -78,14 +78,15 @@ export const home = () => {
       <p id='postDescription'>${doc.data().content}</p>
       <p>${transformDate(doc.data().createdAt.toDate())}</p>
       <div>
-        <button class='btn-delete' data-id='${conta.id}'>Eliminar</button>
-        <button class='btn-edit' data-id='${conta.id}'>Editar</button>
-        <button class='btn-like' data-id='${conta.id}'>Like</button>
+        <img data-id="${conta.id}" id="edit" class="edit-btn" src="./lib/views/img/editar.png" alt="">
+        <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt="">
+        <img data-id="${conta.id}" id="like" class="like-btn" src="./lib/views/img/like.png" alt="">
+        <img data-id="${conta.id}" id="post" class="post-btn" src="./lib/views/img/compartir.png" alt="">
       </div>
       </div>
       `;
 
-      const btnDelete = divHome.querySelectorAll('.btn-delete');
+      const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           console.log(e.target);

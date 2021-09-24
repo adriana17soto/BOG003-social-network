@@ -17,7 +17,10 @@ export const loginCuentaGoogle = () => {
       <input type="password" id="password" name="password" placeholder="Contraseña" required/>
       <p id="message"></p>
       <button type="sumit" id="boton-ingresar">Ingresar</button>
-      <button type="sumit" id="boton-google">Ingresar con Google</button>
+      <button type="sumit" id="boton-google">
+      
+      Ingresar con Google
+      </button>
     </form>
      
       <button id="boton-go-register" Inicial"><a href="#/registration">Registrarte</a></button>
