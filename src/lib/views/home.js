@@ -1,4 +1,4 @@
-import { closeSession, createpost, getPost } from '../index.js';
+import { closeSession, createpost, getPost, DeletePosts } from '../index.js';
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -45,15 +45,12 @@ export const home = () => {
     const id = firebase.auth().currentUser.uid;
     const nameUs = firebase.auth().currentUser.displayName;
     // const dataTime = new Date().getTime();
-    // const dataTime = new Date(time.toDate()).toDateString();
-   // const reacDataTime = new Date(dataTime);
-   // const timeOk = reacDataTime.toLocaleString();
-    
-    
+    // const reacDataTime = new Date(dataTime);
+    // const timeOk = reacDataTime.toLocaleString();
+
     await createpost(textcontent, id, nameUs)
       .then((docRef) => {
-        // getPost();
-      
+        getPost();
         divHome.querySelector('#publicar').value = '';
         console.log('Document written with ID: ', docRef.id);
         console.log('el post fue creado con exito');
@@ -72,11 +69,29 @@ export const home = () => {
     const divPosts = divHome.querySelector('#container-posts');
     divPosts.innerHTML = '';
     response.forEach((doc) => {
+      const conta = doc.data();
+      conta.id = doc.id;
+      console.log(conta);
       divPosts.innerHTML += ` 
+      <div class='card-posts'>
       <h4>${doc.data().userName}</h4>
       <p id='postDescription'>${doc.data().content}</p>
-      <p>${doc.data().createdAt.toDate()}</p>
+      <p>${transformDate(doc.data().createdAt.toDate())}</p>
+      <div>
+        <button class='btn-delete' data-id='${conta.id}'>Eliminar</button>
+        <button class='btn-edit' data-id='${conta.id}'>Editar</button>
+        <button class='btn-like' data-id='${conta.id}'>Like</button>
+      </div>
+      </div>
       `;
+
+      const btnDelete = divHome.querySelectorAll('.btn-delete');
+      btnDelete.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          console.log(e.target);
+          await DeletePosts(e.target.dataset.id);
+        });
+      });
       console.log(doc);
     });
   });
@@ -88,3 +103,12 @@ export const home = () => {
 
   return divHome;
 };
+function transformDate(date) {
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  const fecha = new Date(date);
+  const year = fecha.getFullYear();
+  const month = fecha.getMonth();
+  const day = fecha.getDate();
+
+  return year + '/' + months[month] + '/' + day;
+}

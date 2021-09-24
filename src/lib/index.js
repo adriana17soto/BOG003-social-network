@@ -43,6 +43,8 @@ export const createpost = (describe, identuser, username) => firebase.firestore(
 
 export const getPost = () => firebase.firestore().collection('posts');
 
+export const DeletePosts = (id) => firebase.firestore().collection('posts').doc(id).delete();
+
 /* const db = firebase.firestore();
 db.collection("users").add({
 first: "Ada",
