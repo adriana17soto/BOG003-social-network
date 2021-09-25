@@ -36,11 +36,11 @@ export const home = () => {
   textName.innerHTML = `Bienvenida ${user.displayName}`;
 
   const inputPost = divHome.querySelector('#boton-publicar');
-
+  const id = firebase.auth().currentUser.uid;
   inputPost.addEventListener('click', async () => {
     const textcontent = document.getElementById('publicar').value;
     console.log(textcontent);
-    const id = firebase.auth().currentUser.uid;
+
     const nameUs = firebase.auth().currentUser.displayName;
     // const dataTime = new Date().getTime();
     // const reacDataTime = new Date(dataTime);
@@ -89,15 +89,18 @@ export const home = () => {
       <h4>${doc.data().userName}</h4>
       <p id='postDescription'>${doc.data().content}</p>
       <p>${transformDate(doc.data().createdAt.toDate())}</p>
-      <div id = "icon-content">       
+      <div id = "icon-content">    
+        ${id === doc.data().userId ? `
         <img data-id="${conta.id}" id="edit" class="edit-btn" src="./lib/views/img/editar.png" alt="">
-        <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt="">
+        <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt=""> ` : ''}
         <img data-id="${conta.id}" id="like" class="like-btn" src="./lib/views/img/like.png" alt="">
         <div id=num-likes class="-likes-count"> 1 </div>       
         
       </div>
       </div>
       `;
+      console.log('esto es ahora', id);
+      console.log('comparcion', doc.data().userId);
 
       const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {

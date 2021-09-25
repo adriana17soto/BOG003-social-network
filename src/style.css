@@ -217,14 +217,19 @@ h1 {
   width: 90%;
   border: medium solid #B5EAEA;
   border-radius: 10px;
+  overflow: hidden;
+  overflow-x: scroll;
+  
 }
 
 .card-posts #postDescription{
   margin: 10px;
   color: rgb(132, 132, 133);
-  text-align: justify;
+  text-align: justify; 
+  width: fit-content;
 
 }
+
 #icon-content{
   display: flex;
   justify-content: flex-end;
