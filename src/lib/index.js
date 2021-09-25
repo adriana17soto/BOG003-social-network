@@ -41,7 +41,7 @@ export const createpost = (describe, identuser, username) => firebase.firestore(
    });
 }; */
 
-export const getPost = () => firebase.firestore().collection('posts');
+export const getPost = () => firebase.firestore().collection('posts').orderBy('createdAt', 'desc');
 
 export const DeletePosts = (id) => firebase.firestore().collection('posts').doc(id).delete();
 

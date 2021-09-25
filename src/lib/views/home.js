@@ -6,17 +6,15 @@ export const home = () => {
     <header id="container">
       <div class="nav">
         <h1>Luminar</h1>
-      </div>
-      <nav>
         <button id="boton-close" type="button">Cerrar sesión</button>
-        </nav>
+      </div>      
     </header>
     <div id="text-name"></div>
     <div id="publicaciones">
-      <textarea id="publicar" placeholder="¿Qué quieres compartir?" >
+      <textarea rows="5" cols="10" id="publicar" placeholder="¿Qué quieres compartir?" required >
       </textarea>
       <img  id="boton-publicar" src="./lib/views/img/publicar1.png" alt="">
-    </div>
+    </div> 
     <div id="container-posts"></div>
    </div>
    <div id="publication-container"></div>
@@ -48,8 +46,21 @@ export const home = () => {
     // const reacDataTime = new Date(dataTime);
     // const timeOk = reacDataTime.toLocaleString();
 
-    await createpost(textcontent, id, nameUs)
-      .then((docRef) => {
+    // publicar comentrio con contenido
+    if (textcontent === '' || textcontent === ' ') {
+      divHome.querySelector('#publicar').value = '';
+      console.log('hola escribe algo');
+    } else {
+      await createpost(textcontent, id, nameUs);
+      getPost();
+      divHome.querySelector('#publicar').value = '';
+      console.log('todo esta ok');
+    }
+
+    // comente esta  promesa para sustituirla por publicar un cometario con contenido
+
+    // getPost();
+    /* .then((docRef) => {
         getPost();
         divHome.querySelector('#publicar').value = '';
         console.log('Document written with ID: ', docRef.id);
@@ -59,10 +70,11 @@ export const home = () => {
         alert('Lo sentimos no pudimos agregar tu post, intenta de nuevo');
         divHome.querySelector('#publicar').value = '';
         console.error('Error adding document: ', error);
-      });
+      }); */
     // console.log(view);
   });
 
+  // obterner los post en tiempo real
   getPost().onSnapshot((response) => {
     const containerPosts = divHome.querySelector('#publicar');
     containerPosts.innerHTML = '';
@@ -77,11 +89,12 @@ export const home = () => {
       <h4>${doc.data().userName}</h4>
       <p id='postDescription'>${doc.data().content}</p>
       <p>${transformDate(doc.data().createdAt.toDate())}</p>
-      <div>
+      <div id = "icon-content">       
         <img data-id="${conta.id}" id="edit" class="edit-btn" src="./lib/views/img/editar.png" alt="">
         <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt="">
         <img data-id="${conta.id}" id="like" class="like-btn" src="./lib/views/img/like.png" alt="">
-        <img data-id="${conta.id}" id="post" class="post-btn" src="./lib/views/img/compartir.png" alt="">
+        <div id=num-likes class="-likes-count"> 1 </div>       
+        
       </div>
       </div>
       `;
@@ -110,6 +123,8 @@ function transformDate(date) {
   const year = fecha.getFullYear();
   const month = fecha.getMonth();
   const day = fecha.getDate();
+  const hour = fecha.getHours();
+  const minute = fecha.getMinutes();
 
-  return year + '/' + months[month] + '/' + day;
+  return year + '/' +months[month]+ '/' + day+ '  '+ hour + ':' + minute;
 }
