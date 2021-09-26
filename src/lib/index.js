@@ -26,24 +26,18 @@ export const createpost = (describe, identuser, username) => firebase.firestore(
     likes: [],
 
   });
-/* export const post = () => {
-  const db = firebase.firestore();
-  db.collection('users').add({
-    nameUser: 'user',
-    uidUser: 'uid',
-
-  });
-  /* .then((docRef) => {
-     // console.log("Document written with ID: ", docRef.id);
-   })
-   .catch((error) => {
-     // console.error("Error adding document: ", error);
-   });
-}; */
 
 export const getPost = () => firebase.firestore().collection('posts').orderBy('createdAt', 'desc');
 
 export const DeletePosts = (id) => firebase.firestore().collection('posts').doc(id).delete();
+
+export const updateLikes = (userId, id) => firebase.firestore().collection('posts').doc(id).update(({
+  likes: firebase.firestore.FieldValue.arrayUnion(userId),
+}));
+
+export const removeLikes = (userId, id) => firebase.firestore().collection('posts').doc(id).update(({
+  likes: firebase.firestore.FieldValue.arrayRemove(userId),
+}));
 
 /* const db = firebase.firestore();
 db.collection("users").add({

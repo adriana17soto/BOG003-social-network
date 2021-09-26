@@ -1,4 +1,4 @@
-import { closeSession, createpost, getPost, DeletePosts } from '../index.js';
+import { closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes } from '../index.js';
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -94,13 +94,26 @@ export const home = () => {
         <img data-id="${conta.id}" id="edit" class="edit-btn" src="./lib/views/img/editar.png" alt="">
         <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt=""> ` : ''}
         <img data-id="${conta.id}" id="like" class="like-btn" src="./lib/views/img/like.png" alt="">
-        <div id=num-likes class="-likes-count"> 1 </div>       
+        <div id=num-likes class="-likes-count"> </div>       
         
       </div>
       </div>
       `;
-      console.log('esto es ahora', id);
-      console.log('comparcion', doc.data().userId);
+      const btnlike= divHome.querySelectorAll('.like-btn');
+      btnlike.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          const comePost = await getPost(e.target.dataset.id);
+          const like = comePost.data().likes;
+          console.log(like);
+          /* if (like.incluides(id)) {
+            removeLikes(id, e.target.dataset.id);
+            console.log('dislike');
+          } else {
+            updateLikes(id, e.target.dataset.id);
+            console.log('like');
+          } */
+        });
+      });
 
       const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {
