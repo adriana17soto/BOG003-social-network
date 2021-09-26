@@ -1,4 +1,4 @@
-import { closeSession, createpost, getPost, DeletePosts } from '../index.js';
+import { closeSession, createpost, getPost, DeletePosts, likePosts, getPosts } from '../index.js';
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -23,6 +23,9 @@ export const home = () => {
   divHome.innerHTML = templateHome;
 
   const user = firebase.auth().currentUser;
+  let editStatus = false;
+  let postId = '';
+  const inPosts = divHome.querySelector('#publicar');
   // console.log(user);
 
   const close = divHome.querySelector('#boton-close');
@@ -94,8 +97,7 @@ export const home = () => {
         <img data-id="${conta.id}" id="edit" class="edit-btn" src="./lib/views/img/editar.png" alt="">
         <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt=""> ` : ''}
         <img data-id="${conta.id}" id="like" class="like-btn" src="./lib/views/img/like.png" alt="">
-        <div id=num-likes class="-likes-count"> 1 </div>       
-        
+        <div id=num-likes class="-likes-count">  </div>   
       </div>
       </div>
       `;
@@ -105,11 +107,23 @@ export const home = () => {
       const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
-          console.log(e.target);
+         
           await DeletePosts(e.target.dataset.id);
         });
       });
-      console.log(doc);
+      const btnEdit = divHome.querySelectorAll('.edit-btn');
+      btnEdit.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          const docPost = await getPosts(e.target.dataset.id);
+          inPosts.value = docPost.data().content;
+         // editStatus = true;
+          //postId = docPost.id;
+
+
+          console.log(docPost.data());
+        });
+      });
+
     });
   });
   /* getPost().get((Response) => {

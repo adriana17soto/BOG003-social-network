@@ -45,6 +45,9 @@ export const getPost = () => firebase.firestore().collection('posts').orderBy('c
 
 export const DeletePosts = (id) => firebase.firestore().collection('posts').doc(id).delete();
 
+export const likePosts = () => firebase.firestore().collection('post').doc().get();
+
+export const getPosts = (id) => firebase.firestore().collection('posts').doc(id).get();
 /* const db = firebase.firestore();
 db.collection("users").add({
 first: "Ada",
