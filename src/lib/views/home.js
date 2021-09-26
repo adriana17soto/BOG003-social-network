@@ -1,4 +1,5 @@
-import { closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes } from '../index.js';
+import { closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes,getPosts } from '../index.js';
+
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -23,6 +24,9 @@ export const home = () => {
   divHome.innerHTML = templateHome;
 
   const user = firebase.auth().currentUser;
+  let editStatus = false;
+  let postId = '';
+  const inPosts = divHome.querySelector('#publicar');
   // console.log(user);
 
   const close = divHome.querySelector('#boton-close');
@@ -94,35 +98,43 @@ export const home = () => {
         <img data-id="${conta.id}" id="edit" class="edit-btn" src="./lib/views/img/editar.png" alt="">
         <img data-id="${conta.id}" id="delete" class="delete-btn" src="./lib/views/img/eliminar.png" alt=""> ` : ''}
         <img data-id="${conta.id}" id="like" class="like-btn" src="./lib/views/img/like.png" alt="">
-        <div id=num-likes class="-likes-count"> </div>       
-        
+        <div id=num-likes class="-likes-count"> ${doc.data().likes.length}</div>   
       </div>
       </div>
       `;
       const btnlike= divHome.querySelectorAll('.like-btn');
       btnlike.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
-          const comePost = await getPost(e.target.dataset.id);
+          const comePost = await getPosts(e.target.dataset.id);
           const like = comePost.data().likes;
-          console.log(like);
-          /* if (like.incluides(id)) {
+          if (like.includes(id)) {
             removeLikes(id, e.target.dataset.id);
-            console.log('dislike');
+            console.log(like);
           } else {
             updateLikes(id, e.target.dataset.id);
-            console.log('like');
-          } */
+            console.log(like);
+          }
         });
       });
 
       const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
-          console.log(e.target);
           await DeletePosts(e.target.dataset.id);
         });
       });
-      console.log(doc);
+
+      const btnEdit = divHome.querySelectorAll('.edit-btn');
+      btnEdit.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          const docPost = await getPosts(e.target.dataset.id);
+          inPosts.value = docPost.data().content;
+          // editStatus = true;
+          // postId = docPost.id;
+
+          console.log(docPost.data());
+        });
+      });
     });
   });
   /* getPost().get((Response) => {
