@@ -180,6 +180,17 @@ export const home = () => {
         },600);
 });
 });
+      const btnCloseModal = document.querySelectorAll('.btn-close-not');
+      btnCloseModal.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          modal.classList.toggle('modal-close');
+
+  setTimeout(function(){
+    modalCont.style.opacity = '0';
+    modalCont.style.visibility = 'hidden';
+  },600);
+});
+});
    
       const btnEdit = divHome.querySelectorAll('.edit-btn');
       btnEdit.forEach((btn) => {
