@@ -35,8 +35,8 @@ export const updateLikes = (userId, id) => firebase.firestore().collection('post
   likes: firebase.firestore.FieldValue.arrayUnion(userId),
 }));
 
-export const removeLikes = (id) => firebase.firestore().collection('posts').doc(id).update(({
-  likes: firebase.firestore.FieldValue.arrayRemove(),
+export const removeLikes = (userId, id) => firebase.firestore().collection('posts').doc(id).update(({
+  likes: firebase.firestore.FieldValue.arrayRemove(userId),
 }));
 
 export const likePosts = () => firebase.firestore().collection('post').doc().get();

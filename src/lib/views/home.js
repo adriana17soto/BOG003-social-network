@@ -35,22 +35,19 @@ export const home = () => {
       window.location.hash = '#/login';
     });
   });
-
+  // text-name muestra el nombre del usuario
   const textName = divHome.querySelector('#text-name');
   textName.innerHTML = `Bienvenida ${user.displayName}`;
 
+  // empieza el evento publicar
   const inputPost = divHome.querySelector('#boton-publicar');
   const id = firebase.auth().currentUser.uid;
   inputPost.addEventListener('click', async () => {
     const textcontent = document.getElementById('publicar').value;
     console.log(textcontent);
-
     const nameUs = firebase.auth().currentUser.displayName;
-    // const dataTime = new Date().getTime();
-    // const reacDataTime = new Date(dataTime);
-    // const timeOk = reacDataTime.toLocaleString();
 
-    // publicar comentrio con contenido
+    // publicar comentario no vacio
     if (textcontent === '' || textcontent === ' ') {
       divHome.querySelector('#publicar').value = '';
       console.log('hola escribe algo');
@@ -60,22 +57,6 @@ export const home = () => {
       divHome.querySelector('#publicar').value = '';
       console.log('todo esta ok');
     }
-
-    // comente esta  promesa para sustituirla por publicar un cometario con contenido
-
-    // getPost();
-    /* .then((docRef) => {
-        getPost();
-        divHome.querySelector('#publicar').value = '';
-        console.log('Document written with ID: ', docRef.id);
-        console.log('el post fue creado con exito');
-      })
-      .catch((error) => {
-        alert('Lo sentimos no pudimos agregar tu post, intenta de nuevo');
-        divHome.querySelector('#publicar').value = '';
-        console.error('Error adding document: ', error);
-      }); */
-    // console.log(view);
   });
 
   // obterner los post en tiempo real
@@ -102,7 +83,8 @@ export const home = () => {
       </div>
       </div>
       `;
-      const btnlike= divHome.querySelectorAll('.like-btn');
+      // aqui empieza la funcion para darle likes a los comentatios
+      const btnlike = divHome.querySelectorAll('.like-btn');
       btnlike.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           const comePost = await getPosts(e.target.dataset.id);
@@ -116,14 +98,15 @@ export const home = () => {
           }
         });
       });
-
+      // boton eliminar funcionalidad ok
       const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {
+        // se va acrear el modal
         btn.addEventListener('click', async (e) => {
           await DeletePosts(e.target.dataset.id);
         });
       });
-
+      // funcionalidad editar post
       const btnEdit = divHome.querySelectorAll('.edit-btn');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
@@ -137,14 +120,10 @@ export const home = () => {
       });
     });
   });
-  /* getPost().get((Response) => {
-     Response.forEach((doc) => {
-      console.log(doc);
-     });
-   }); */
 
   return divHome;
 };
+
 function transformDate(date) {
   const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   const fecha = new Date(date);
