@@ -28,6 +28,7 @@ export const home = () => {
   const user = firebase.auth().currentUser;
   let editStatus = false;
   let postId = '';
+  let currentPostId = '';
   const inPosts = divHome.querySelector('#publicar');
   // console.log(user);
 
@@ -133,16 +134,16 @@ export const home = () => {
           <div class='modal-texto'>
           <h3>¿Estas seguro de eliminar está publicación?</h3>
           <button data-id="${conta.id}" id="delete-yes" class="btn-close-yes" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
-          <button id="boton-close-not" type="button">No</button>
+          <button id="boton-close-not" class="btn-close-not" type="button">No</button>
           </div>
           </div>
           `;
 
-     /*const cerrarModal = document.querySelectorAll('.close')[0];
-      const abrirModal = document.querySelectorAll('.delete-btn')[0];*/
-
-      const modal = document.querySelector('.modal');
-      const modalCont = document.querySelector('.modal-container');
+     /* const cerrarModal = document.querySelectorAll('.close')[0];
+      const abrirModal = document.querySelectorAll('.delete-btn')[0];
+      */
+      const modal = document.querySelectorAll('.modal')[0];
+      const modalCont = document.querySelectorAll('.modal-container')[0];
 
 
       const abrirModal = document.querySelectorAll('.delete-btn');
@@ -151,6 +152,21 @@ export const home = () => {
           modalCont.style.opacity = '1';
           modalCont.style.visibility = 'visible';
           modal.classList.toggle('modal-close');
+          currentPostId = e.target.dataset.id;
+        });
+      });
+
+      const btnDelete = divHome.querySelectorAll('.btn-close-yes');
+      btnDelete.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+         // console.log(e.target.dataset.id);
+          await DeletePosts(currentPostId);
+          modal.classList.toggle('modal-close');
+
+          setTimeout(function(){
+            modalCont.style.opacity = '0';
+            modalCont.style.visibility = 'hidden';
+          },600);
         });
       });
       const cerrarModal = document.querySelectorAll('.close');
@@ -164,135 +180,7 @@ export const home = () => {
         },600);
 });
 });
-      const btnDelete = divHome.querySelectorAll('.btn-close-yes');
-      btnDelete.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
-          console.log(e.target.dataset.id);
-          await DeletePosts(e.target.dataset.id);
-          modal.classList.toggle('modal-close');
-
-          setTimeout(function(){
-            modalCont.style.opacity = '0';
-            modalCont.style.visibility = 'hidden';
-          },600);
-        });
-      });
-
-
-
-
-
-
-
-/*
-      const containerDeleteModal = document.querySelector('.modal-container123');
-      containerDeleteModal.innerHTML = `
-      <div class='modal-container'>
-          <div class='modal modal-close'>
-          <p class='close'>X</p>
-          <div class='modal-texto'>
-          <h3>¿Estas seguro de eliminar está publicación?</h3>
-          <button data-id="${conta.id}" id="delete-yes" class="btn-close-yes" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
-          <button id="boton-close-not" type="button">No</button>
-          </div>
-          </div>
-          `;
-
-     // const cerrarModal = document.querySelectorAll('.close')[0];
-     // const abrirModal = document.querySelectorAll('.delete-btn')[0];
-      //const modal = document.querySelectorAll('.modal')[];
-     // const modalCont = document.querySelectorAll('.modal-container')[''];
-
-     const abrirModal = document.querySelectorAll('.delete-btn');
-     abrirModal.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.modal-container').style.opacity = '1';
-        document.querySelectorAll('.modal-container').style.visibility = 'visible';
-        document.querySelectorAll('.modal').classList.toggle('modal-close');
-      });
-    });
-      const cerrarModal = document.querySelectorAll('.close');
-      cerrarModal.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.modal').classList.toggle('modal-close');
-
-        setTimeout(function(){
-          document.querySelectorAll('.modal-container').style.opacity = '0';
-          document.querySelectorAll('.modal-container').style.visibility = 'hidden';
-        },600);
-      });
-    });
-      const btnDelete = divHome.querySelectorAll('#delete-yes');
-      btnDelete.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
-          await DeletePosts(e.target.dataset.id);
-          document.querySelectorAll('.modal').classList.toggle('modal-close');
-
-          setTimeout(function(){
-            document.querySelectorAll('.modal-container').style.opacity = '0';
-            document.querySelectorAll('.modal-container').style.visibility = 'hidden';
-          },600);
-        });
-      });
-    */
-
-
-
-
-/*
-      const containerDeleteModal = document.querySelector('.modal-container');
-      containerDeleteModal.innerHTML = `
-          <div class='modal modal-close'>
-          <p class='close'>X</p>
-          <div class='modal-texto'>
-          <h3>¿Estas seguro de eliminar está publicación?</h3>
-          <button data-id="${conta.id}" id="delete-yes" class="btn-close-yes" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
-          <button id="boton-close-not" type="button">No</button>
-          </div>
-          </div>
-          `;
-
-     // const cerrarModal = document.querySelectorAll('.close')[0];
-     // const abrirModal = document.querySelectorAll('.delete-btn')[0];
-      //const modal = document.querySelectorAll('.modal')[];
-      //const modalCont = document.querySelectorAll('.modal-container')[''];
-
-     const abrirModal = document.querySelectorAll('.delete-btn');
-     abrirModal.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        containerDeleteModal.style.opacity = '1';
-        containerDeleteModal.style.visibility = 'visible';
-        document.querySelectorAll('.modal').classList.toggle('modal-close');
-      });
-    });
-      const cerrarModal = document.querySelectorAll('.close');
-      cerrarModal.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.modal').classList.toggle('modal-close');
-
-        setTimeout(function(){
-          containerDeleteModal.style.opacity = '0';
-          containerDeleteModal.style.visibility = 'hidden';
-        },600);
-      });
-    });
-      const btnDelete = divHome.querySelectorAll('#delete-yes');
-      btnDelete.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
-          await DeletePosts(e.target.dataset.id);
-          document.querySelectorAll('.modal').classList.toggle('modal-close');
-
-          setTimeout(function(){
-            containerDeleteModal.style.opacity = '0';
-            containerDeleteModal.style.visibility = 'hidden';
-          },600);
-        });
-      });
-    */
-
-
-
-
+   
       const btnEdit = divHome.querySelectorAll('.edit-btn');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async (e) => {

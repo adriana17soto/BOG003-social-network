@@ -30,7 +30,7 @@ export const createpost = (describe, identuser, username) => firebase.firestore(
 export const getPost = () => firebase.firestore().collection('posts').orderBy('createdAt', 'desc');
 
 export const DeletePosts = (id) => firebase.firestore().collection('posts').doc(id).delete();
-
+// export const deletePost = (postId) => {db.collection('posts').doc(postId).delete();
 export const updateLikes = (userId, id) => firebase.firestore().collection('posts').doc(id).update(({
   likes: firebase.firestore.FieldValue.arrayUnion(userId),
 }));
