@@ -1,5 +1,6 @@
-import { closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes, getPosts, updatepost } from '../index.js';
-
+import {
+  closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes, getPosts, updatepost,
+} from '../index.js';
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -26,12 +27,7 @@ export const home = () => {
   divHome.innerHTML = templateHome;
 
   const user = firebase.auth().currentUser;
- // let editStatus = false;
   let currentPostId = '';
-  //let postId = '';
-  //const inPosts = document.querySelector('#publicar');
-  // console.log(user);
- 
   const close = divHome.querySelector('#boton-close');
   close.addEventListener('click', () => {
     closeSession().then(() => {
@@ -46,12 +42,8 @@ export const home = () => {
   const id = firebase.auth().currentUser.uid;
   inputPost.addEventListener('click', async () => {
     const textcontent = document.getElementById('publicar').value;
-    console.log(textcontent);
 
     const nameUs = firebase.auth().currentUser.displayName;
-    // const dataTime = new Date().getTime();
-    // const reacDataTime = new Date(dataTime);
-    // const timeOk = reacDataTime.toLocaleString();
 
     // publicar comentrio con contenido
     if (textcontent === '' || textcontent === ' ') {
@@ -63,30 +55,7 @@ export const home = () => {
       divHome.querySelector('#publicar').value = '';
       console.log('todo esta ok');
     }
-
-    // comente esta  promesa para sustituirla por publicar un cometario con contenido
-
-    // getPost();
-    /* .then((docRef) => {
-        getPost();
-        divHome.querySelector('#publicar').value = '';
-        console.log('Document written with ID: ', docRef.id);
-        console.log('el post fue creado con exito');
-      })
-      .catch((error) => {
-        alert('Lo sentimos no pudimos agregar tu post, intenta de nuevo');
-        divHome.querySelector('#publicar').value = '';
-        console.error('Error adding document: ', error);
-      }); */
-    // console.log(view);
   });
-
- /* db.collection("cities").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-    });
-});*/
 
   // obterner los post en tiempo real
   getPost().onSnapshot((response) => {
@@ -97,7 +66,6 @@ export const home = () => {
     response.forEach((doc) => {
       const conta = doc.data();
       conta.id = doc.id;
-      console.log(conta);
       divPosts.innerHTML += ` 
       <div class='card-posts'>
       <h4>${doc.data().userName}</h4>
@@ -119,10 +87,8 @@ export const home = () => {
           const like = comePost.data().likes;
           if (like.includes(id)) {
             removeLikes(id, e.target.dataset.id);
-            console.log(like);
           } else {
             updateLikes(id, e.target.dataset.id);
-            console.log(like);
           }
         });
       });
@@ -138,13 +104,8 @@ export const home = () => {
           </div>
           </div>
           `;
-
-     /* const cerrarModal = document.querySelectorAll('.close')[0];
-      const abrirModal = document.querySelectorAll('.delete-btn')[0];
-      */
       const modal = document.querySelectorAll('.modal')[0];
       const modalCont = document.querySelectorAll('.modal-container')[0];
-
 
       const abrirModal = document.querySelectorAll('.delete-btn');
       abrirModal.forEach((btn) => {
@@ -158,59 +119,53 @@ export const home = () => {
 
       const btnDelete = divHome.querySelectorAll('.btn-close-yes');
       btnDelete.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
-         // console.log(e.target.dataset.id);
+        btn.addEventListener('click', async () => {
           await DeletePosts(currentPostId);
           modal.classList.toggle('modal-close');
 
-          setTimeout(function(){
+          setTimeout(() => {
             modalCont.style.opacity = '0';
             modalCont.style.visibility = 'hidden';
-          },600);
+          }, 600);
         });
       });
       const cerrarModal = document.querySelectorAll('.close');
       cerrarModal.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        modal.classList.toggle('modal-close');
-
-        setTimeout(function(){
-          modalCont.style.opacity = '0';
-          modalCont.style.visibility = 'hidden';
-        },600);
-});
-});
-      const btnCloseModal = document.querySelectorAll('.btn-close-not');
-      btnCloseModal.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', () => {
           modal.classList.toggle('modal-close');
 
-  setTimeout(function(){
-    modalCont.style.opacity = '0';
-    modalCont.style.visibility = 'hidden';
-  },600);
-});
-});
+          setTimeout(() => {
+            modalCont.style.opacity = '0';
+            modalCont.style.visibility = 'hidden';
+          }, 600);
+        });
+      });
+      const btnCloseModal = document.querySelectorAll('.btn-close-not');
+      btnCloseModal.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          modal.classList.toggle('modal-close');
 
-     const containerEditModal = document.querySelector('.modal-container-edit');
+          setTimeout(() => {
+            modalCont.style.opacity = '0';
+            modalCont.style.visibility = 'hidden';
+          }, 600);
+        });
+      });
+
+      const containerEditModal = document.querySelector('.modal-container-edit');
       containerEditModal.innerHTML = `
           <div class=' modal modal-close-edit'>
           <p class='close-edit'>X</p>
           <div class='modal-texto-edit'>
-          <textarea rows="5" cols="10" id="edit-content">
+          <textarea id="edit-content">
           </textarea>
           <button data-id="${conta.id}" id="edit-yes" class="btn-close-yes-edit" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
           <button id="boton-close-not-edit" class="btn-close-not-edit" type="button">No</button>
           </div>
           </div>
           `;
-
-     // const cerrarModal = document.querySelectorAll('.close')[0];
-     // const abrirModal = document.querySelectorAll('.delete-btn')[0];
-      
       const modalEdit = document.querySelectorAll('.modal-close-edit')[0];
       const modalContEdit = document.querySelectorAll('.modal-container-edit')[0];
-
 
       const abrirModalEdit = document.querySelectorAll('.edit-btn');
       abrirModalEdit.forEach((btn) => {
@@ -221,15 +176,17 @@ export const home = () => {
           const ojo = document.querySelector('#edit-content');
           const docPost = await getPosts(e.target.dataset.id);
           ojo.innerHTML = docPost.data().content;
+          updatepost(docPost, currentPostId);
         });
       });
       const btnEdit = divHome.querySelectorAll('.btn-close-yes-edit');
       btnEdit.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
+        btn.addEventListener('click', async () => {
           console.log('editing');
+          //await updatepost();
           modalEdit.classList.toggle('modal-close-edit');
 
-          setTimeout(function () {
+          setTimeout(() => {
             modalContEdit.style.opacity = '0';
             modalContEdit.style.visibility = 'hidden';
           }, 600);
@@ -240,7 +197,7 @@ export const home = () => {
         btn.addEventListener('click', () => {
           modalEdit.classList.toggle('modal-close-edit');
 
-          setTimeout(function () {
+          setTimeout(() => {
             modalContEdit.style.opacity = '0';
             modalContEdit.style.visibility = 'hidden';
           }, 600);
@@ -251,32 +208,14 @@ export const home = () => {
         btn.addEventListener('click', () => {
           modalEdit.classList.toggle('modal-close-edit');
 
-          setTimeout(function () {
+          setTimeout(() => {
             modalContEdit.style.opacity = '0';
             modalContEdit.style.visibility = 'hidden';
           }, 600);
         });
-      }); 
-   
-     /* const btnEdit = divHome.querySelectorAll('.edit-btn');
-      btnEdit.forEach((btn) => {
-        btn.addEventListener('click', async (e) => {
-          const docPost = await getPosts(e.target.dataset.id);
-          inPosts.value = docPost.data().content;
-          // editStatus = true;
-          // postId = docPost.id;
-
-          console.log(docPost.data());
-        });
-      }); */
+      });
     });
   });
-  /* getPost().get((Response) => {
-     Response.forEach((doc) => {
-      console.log(doc);
-     });
-   }); */
-
   return divHome;
 };
 function transformDate(date) {
@@ -288,5 +227,5 @@ function transformDate(date) {
   const hour = fecha.getHours();
   const minute = fecha.getMinutes();
 
-  return year + '/' +months[month]+ '/' + day+ '  '+ hour + ':' + minute;
+  return year + '/' + months[month] + '/' + day + '  ' + hour + ':' + minute;
 }
