@@ -1,4 +1,4 @@
-import { closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes,getPosts } from '../index.js';
+import { closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes, getPosts, updatepost } from '../index.js';
 
 
 export const home = () => {
@@ -19,15 +19,18 @@ export const home = () => {
     <div id="container-posts"></div>
    </div>
    <div id="publication-container"></div>
+   <div class='modal-container'></div>
+   <div class='modal-container-edit'></div>
     <footer>@Luminar 2021</footer>
   `;
   divHome.innerHTML = templateHome;
 
   const user = firebase.auth().currentUser;
   let editStatus = false;
+  let currentPostId = '';
   let postId = '';
-  const inPosts = divHome.querySelector('#publicar');
   // console.log(user);
+  const inPosts = document.querySelector('#edit-content');
 
   const close = divHome.querySelector('#boton-close');
   close.addEventListener('click', () => {
@@ -106,8 +109,107 @@ export const home = () => {
           await DeletePosts(e.target.dataset.id);
         });
       });
-      // funcionalidad editar post
-      const btnEdit = divHome.querySelectorAll('.edit-btn');
+      const cerrarModal = document.querySelectorAll('.close');
+      cerrarModal.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        modal.classList.toggle('modal-close');
+
+        setTimeout(function(){
+          modalCont.style.opacity = '0';
+          modalCont.style.visibility = 'hidden';
+        },600);
+});
+});
+      const btnCloseModal = document.querySelectorAll('.btn-close-not');
+      btnCloseModal.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          modal.classList.toggle('modal-close');
+
+  setTimeout(function(){
+    modalCont.style.opacity = '0';
+    modalCont.style.visibility = 'hidden';
+  },600);
+});
+});
+
+     const containerEditModal = document.querySelector('.modal-container-edit');
+      containerEditModal.innerHTML = `
+          <div class=' modal modal-close-edit'>
+          <p class='close-edit'>X</p>
+          <div class='modal-texto-edit'>
+          <textarea rows="5" cols="10" id="edit-content">
+          </textarea>
+          <button data-id="${conta.id}" id="delete-yes" class="btn-close-yes-edit" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
+          <button id="boton-close-not-edit" class="btn-close-not-edit" type="button">No</button>
+          </div>
+          </div>
+          `;
+
+     // const cerrarModal = document.querySelectorAll('.close')[0];
+     // const abrirModal = document.querySelectorAll('.delete-btn')[0];
+      
+      const modalEdit = document.querySelectorAll('.modal-close-edit')[0];
+      const modalContEdit = document.querySelectorAll('.modal-container-edit')[0];
+
+
+      const abrirModalEdit = document.querySelectorAll('.edit-btn');
+      abrirModalEdit.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          modalContEdit.style.opacity = '1';
+          modalContEdit.style.visibility = 'visible';
+          modalEdit.classList.toggle('modal-close-edit');
+          currentPostId = e.target.dataset.id;
+          //const docPost = await getPosts(currentPostId);
+          //inPosts.value = docPost.data().content;
+        });
+      });
+
+      const btnEdit = divHome.querySelectorAll('.btn-close-yes');
+      btnEdit.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          await getPosts(currentPostId);
+          
+          // console.log(e.target.dataset.id);
+          //const docPost = await updatepost(currentPostId);
+          //editStatus = true;
+          //postId = docPost.id;
+          //document.querySelector('#publicar').value = docPost.data().content;
+          //document.querySelector('.btn-close-yes').innerText = 'GUARDAR';
+ 
+         // await updatepost(currentPostId);
+          //getPost();
+          modalEdit.classList.toggle('modal-close-edit');
+
+          setTimeout(function () {
+            modalContEdit.style.opacity = '0';
+            modalContEdit.style.visibility = 'hidden';
+          }, 600);
+        });
+      });
+      const cerrarModalEdit = document.querySelectorAll('.close-edit');
+      cerrarModalEdit.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          modalEdit.classList.toggle('modal-close-edit');
+
+          setTimeout(function () {
+            modalContEdit.style.opacity = '0';
+            modalContEdit.style.visibility = 'hidden';
+          }, 600);
+        });
+      });
+      const btnCloseModalEdit = document.querySelectorAll('.btn-close-not-edit');
+      btnCloseModalEdit.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          modalEdit.classList.toggle('modal-close-edit');
+
+          setTimeout(function () {
+            modalContEdit.style.opacity = '0';
+            modalContEdit.style.visibility = 'hidden';
+          }, 600);
+        });
+      }); 
+   
+     /* const btnEdit = divHome.querySelectorAll('.edit-btn');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           const docPost = await getPosts(e.target.dataset.id);
@@ -117,7 +219,7 @@ export const home = () => {
 
           console.log(docPost.data());
         });
-      });
+      }); */
     });
   });
 
