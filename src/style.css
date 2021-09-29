@@ -198,13 +198,6 @@ h1 {
 
  
 
-@media (min-width:768px){
-    .divFlex {
-        height: 100%;
-        align-items: center;
-    }
-}
-
 .card-posts{
   display: flex;
   flex-flow: column;
@@ -251,4 +244,69 @@ h1 {
   height: 1px;
   
 }
+/*
+.btn-modal{
+  display: inline-block;
+  padding: 7px 0;
+  width: 1px;
+  border: 1px solid #ffff;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+  color: #f38ba0;
+  background: #32a0a0;
+}
+*/
+.modal-container{
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0,0.5);
+  display: flex;
+justify-content: center;
+align-items: center;
+}
+.modal{
+  width: 40%;
+  height: 40%;
+  background: #edf6e5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+  transition: transform 1s;
+  transform: translateY(0%);
+  border-radius: 10px;
+  border: medium solid #B5EAEA;
+  overflow: hidden;
+}
 
+.modal-close{
+  transform: translateY(200%);
+
+}
+.close{
+  background-color: antiquewhite;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: #f38ba0;
+  line-height: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+} 
+
+.btn-close-yes,
+.btn-close-not{
+  border: 4px solid #B5EAEA;
+  border-radius: 3px;
+}

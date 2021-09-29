@@ -9,7 +9,7 @@ export const registrar = () => {
  </header>
 <section class="welcome">
 <br/>
-</section>
+
         <form method="post" id="container-login">
         <input type="text" id="name" placeholder="Nombre y apellido" required/>
           <input type="email" id="email" placeholder="Correo Electrónico" required/>
@@ -23,9 +23,9 @@ export const registrar = () => {
           </form>
           <button type="button" id="boton-googleR">Ingresar con Google</button>
           <h2 id="login"></h2>
-        </div>
         <button id="boton-go-ingresar"><a href="#/login">Ingresar</a></button>
       </div>
+</section>
       <footer>@Luminar 2021</footer>
     </div>
     `;
