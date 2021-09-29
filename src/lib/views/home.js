@@ -227,22 +227,6 @@ export const home = () => {
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
           console.log('editing');
-          
-         /* const editDoc = await getPosts(e.target.dataset.id);
-          editStatus = true;
-          postId = editDoc.postId;
-          document.querySelector('#publicar').value = editDoc.data().content;
-          document.querySelector('#edit-yes').innerText = 'Guardar';*/
-          
-          // console.log(e.target.dataset.id);
-          //const docPost = await updatepost(currentPostId);
-          //editStatus = true;
-          //postId = docPost.id;
-          //document.querySelector('#publicar').value = docPost.data().content;
-          //document.querySelector('.btn-close-yes').innerText = 'GUARDAR';
- 
-         // await updatepost(e.target.dataset.id);
-          
           modalEdit.classList.toggle('modal-close-edit');
 
           setTimeout(function () {
