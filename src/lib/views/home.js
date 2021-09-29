@@ -26,12 +26,12 @@ export const home = () => {
   divHome.innerHTML = templateHome;
 
   const user = firebase.auth().currentUser;
-  let editStatus = false;
+ // let editStatus = false;
   let currentPostId = '';
-  let postId = '';
+  //let postId = '';
+  //const inPosts = document.querySelector('#publicar');
   // console.log(user);
-  const inPosts = document.querySelector('#edit-content');
-
+ 
   const close = divHome.querySelector('#boton-close');
   close.addEventListener('click', () => {
     closeSession().then(() => {
@@ -199,7 +199,7 @@ export const home = () => {
           <div class='modal-texto-edit'>
           <textarea rows="5" cols="10" id="edit-content">
           </textarea>
-          <button data-id="${conta.id}" id="delete-yes" class="btn-close-yes-edit" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
+          <button data-id="${conta.id}" id="edit-yes" class="btn-close-yes-edit" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
           <button id="boton-close-not-edit" class="btn-close-not-edit" type="button">No</button>
           </div>
           </div>
@@ -218,16 +218,20 @@ export const home = () => {
           modalContEdit.style.opacity = '1';
           modalContEdit.style.visibility = 'visible';
           modalEdit.classList.toggle('modal-close-edit');
-          currentPostId = e.target.dataset.id;
-          //const docPost = await getPosts(currentPostId);
-          //inPosts.value = docPost.data().content;
+          const ojo = document.querySelector('#edit-content');
+          const docPost = await getPosts(e.target.dataset.id);
+          ojo.innerHTML = docPost.data().content;
         });
       });
-
       const btnEdit = divHome.querySelectorAll('.btn-close-yes');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
-          await getPosts(currentPostId);
+          
+         /* const editDoc = await getPosts(e.target.dataset.id);
+          editStatus = true;
+          postId = editDoc.postId;
+          document.querySelector('#publicar').value = editDoc.data().content;
+          document.querySelector('#edit-yes').innerText = 'Guardar';*/
           
           // console.log(e.target.dataset.id);
           //const docPost = await updatepost(currentPostId);
