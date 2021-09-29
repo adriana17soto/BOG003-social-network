@@ -102,16 +102,55 @@ export const home = () => {
         });
       });
       // boton eliminar funcionalidad ok
-      const btnDelete = divHome.querySelectorAll('.delete-btn');
+      /* const btnDelete = divHome.querySelectorAll('.delete-btn');
       btnDelete.forEach((btn) => {
         // se va acrear el modal
         btn.addEventListener('click', async (e) => {
           await DeletePosts(e.target.dataset.id);
         });
+      }); */
+      // ----------------boton eliminar post--------
+      const containerDeleteModal = document.querySelector('.modal-container');
+      containerDeleteModal.innerHTML = `
+          <div class='modal modal-close'>
+          <p class='close'>X</p>
+          <div class='modal-texto'>
+          <h3>¿Estas seguro de eliminar está publicación?</h3>
+          <button data-id="${conta.id}" id="delete-yes" class="btn-close-yes" src="./lib/views/img/eliminar.png" alt="" >Yes</button>
+          <button id="boton-close-not" class="btn-close-not" type="button">No</button>
+          </div>
+          </div>
+          `;
+      const modal = document.querySelectorAll('.modal')[0];
+      const modalCont = document.querySelectorAll('.modal-container')[0];
+
+      const abrirModal = document.querySelectorAll('.delete-btn');
+      abrirModal.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          modalCont.style.opacity = '1';
+          modalCont.style.visibility = 'visible';
+          modal.classList.toggle('modal-close');
+          currentPostId = e.target.dataset.id;
+        });
       });
+
+      const btnDelete = divHome.querySelectorAll('.btn-close-yes');
+      btnDelete.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+         // console.log(e.target.dataset.id);
+          await DeletePosts(currentPostId);
+          modal.classList.toggle('modal-close');
+          setTimeout(function(){
+            modalCont.style.opacity = '0';
+            modalCont.style.visibility = 'hidden';
+          },600);
+        });
+      });
+
+      // __---------------------------------MODAL EDITAR
       const cerrarModal = document.querySelectorAll('.close');
       cerrarModal.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', (e) => {
         modal.classList.toggle('modal-close');
 
         setTimeout(function(){
@@ -159,8 +198,11 @@ export const home = () => {
           modalContEdit.style.visibility = 'visible';
           modalEdit.classList.toggle('modal-close-edit');
           currentPostId = e.target.dataset.id;
-          //const docPost = await getPosts(currentPostId);
-          //inPosts.value = docPost.data().content;
+          /* const ojo = document.querySelector('#edit-content');
+          const docPost = await getPosts(e.target.dataset.id);
+          ojo.innerHTML = docPost.data().content; */
+          // const docPost = await getPosts(currentPostId);
+          // inPosts.value = docPost.data().content;
         });
       });
 
