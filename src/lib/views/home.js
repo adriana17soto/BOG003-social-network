@@ -223,9 +223,10 @@ export const home = () => {
           ojo.innerHTML = docPost.data().content;
         });
       });
-      const btnEdit = divHome.querySelectorAll('.btn-close-yes');
+      const btnEdit = divHome.querySelectorAll('.btn-close-yes-edit');
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
+          console.log('editing');
           
          /* const editDoc = await getPosts(e.target.dataset.id);
           editStatus = true;
@@ -240,8 +241,8 @@ export const home = () => {
           //document.querySelector('#publicar').value = docPost.data().content;
           //document.querySelector('.btn-close-yes').innerText = 'GUARDAR';
  
-         // await updatepost(currentPostId);
-          //getPost();
+         // await updatepost(e.target.dataset.id);
+          
           modalEdit.classList.toggle('modal-close-edit');
 
           setTimeout(function () {
