@@ -39,20 +39,6 @@ export const removeLikes = (userId, id) => firebase.firestore().collection('post
   likes: firebase.firestore.FieldValue.arrayRemove(userId),
 }));
 
-export const updatepost = (postId, describe) => firebase.firestore().collection('post').doc(postId).update(describe);
+export const updatepost = (id, describe) => firebase.firestore().collection('posts').doc(id).update({ content: describe });
 
 export const getPosts = (id) => firebase.firestore().collection('posts').doc(id).get();
-/* const db = firebase.firestore();
-db.collection("users").add({
-first: "Ada",
-last: "Lovelace",
-born: 1815
-})
-.then((docRef) => {
-console.log("Document written with ID: ", docRef.id);
-})
-.catch((error) => {
-console.error("Error adding document: ", error);
-});
-
-*/
