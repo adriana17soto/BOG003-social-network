@@ -24,7 +24,7 @@ export const loginGoogle = () => {
   // muestra la ventana emergente con  las cuenta actual de google
   return firebase.auth().signInWithPopup(provider);
 };
-// se utliza a firestore para crear el objeto  
+// se utliza a firestore para crear el objeto
 // con el metodo add se añade una nueva coleccion posts
 export const createpost = (describe, identuser, username) => firebase.firestore().collection('posts')
   .add({

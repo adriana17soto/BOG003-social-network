@@ -1,6 +1,6 @@
 import {
   closeSession, createpost, getPost, DeletePosts, removeLikes, updateLikes, getPosts, updatepost,
-} from '../index.js';
+} from '../index.js'; // importa las funciones de firebase
 
 export const home = () => {
   const divHome = document.createElement('div');
@@ -16,6 +16,7 @@ export const home = () => {
       <textarea rows="5" cols="10" id="publicar" placeholder="¿Qué quieres compartir?" required >
       </textarea>
       <img  id="boton-publicar" src="./lib/views/img/publicar1.png" alt="">
+      <p id="message"></p>
     </div> 
     <div id="container-posts"></div>
    </div>
@@ -25,9 +26,12 @@ export const home = () => {
     <footer>@Luminar 2021</footer>
   `;
   divHome.innerHTML = templateHome;
-
+  // se crea una constante de usuario que contiene la informacion del mismo
   const user = firebase.auth().currentUser;
+  //  sea crea la variable que tomara el id del post en el
+  // evento eliminar y confirmar la eliminacion
   let currentPostId = '';
+  // funcion que toma el evento click para cerrar sesion
   const close = divHome.querySelector('#boton-close');
   close.addEventListener('click', () => {
     closeSession().then(() => {
@@ -40,7 +44,7 @@ export const home = () => {
 
   // empieza el evento publicar
   const inputPost = divHome.querySelector('#boton-publicar');
-  const id = firebase.auth().currentUser.uid;
+  const id = firebase.auth().currentUser.uid; 
   inputPost.addEventListener('click', async () => {
     const textcontent = document.getElementById('publicar').value;
     const nameUs = firebase.auth().currentUser.displayName;
@@ -48,15 +52,14 @@ export const home = () => {
     // publicar comentario no vacio
     if (textcontent === '' || textcontent === ' ') {
       divHome.querySelector('#publicar').value = '';
-      console.log('hola escribe algo');
+      alert('Hola escribe algo');
     } else {
       await createpost(textcontent, id, nameUs);
       getPost();
       divHome.querySelector('#publicar').value = '';
-      console.log('todo esta ok');
     }
   });
-
+  // funcion para la fecha y hora
   function transformDate(date) {
     const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
     const fecha = new Date(date);
@@ -126,11 +129,12 @@ export const home = () => {
         btn.addEventListener('click', (e) => {
           modalCont.style.opacity = '1';
           modalCont.style.visibility = 'visible';
+          // con toggle alternamos entre dos acciones
           modal.classList.toggle('modal-close');
           currentPostId = e.target.dataset.id;
         });
       });
-
+      // boton de confirmacion
       const btnDelete = divHome.querySelectorAll('.btn-close-yes');
       btnDelete.forEach((btn) => {
         btn.addEventListener('click', async () => {
@@ -144,7 +148,6 @@ export const home = () => {
         });
       });
 
-      // __---------------------------------MODAL EDITAR
       const cerrarModal = document.querySelectorAll('.close');
       cerrarModal.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -167,7 +170,7 @@ export const home = () => {
           }, 600);
         });
       });
-
+      // __---------------------------------MODAL EDITAR
       const containerEditModal = document.querySelector('.modal-container-edit');
       containerEditModal.innerHTML = `
           <div class=' modal modal-close-edit'>
@@ -189,14 +192,13 @@ export const home = () => {
           modalContEdit.style.opacity = '1';
           modalContEdit.style.visibility = 'visible';
           modalEdit.classList.toggle('modal-close-edit');
-          const ojo = document.querySelector('#edit-content');
+          const docEdit = document.querySelector('#edit-content');
           const docPost = await getPosts(e.target.dataset.id);
-          ojo.innerHTML = docPost.data().content;
-          // updatepost(docPost, currentPostId);
+          docEdit.innerHTML = docPost.data().content;
           const btnEdit = divHome.querySelectorAll('.btn-close-yes-edit');
-          btnEdit.forEach((btn) => {
-            btn.addEventListener('click', async () => {
-              const editpost = ojo.value;
+          btnEdit.forEach((btnYes) => {
+            btnYes.addEventListener('click', async () => {
+              const editpost = docEdit.value;
               await updatepost(e.target.dataset.id, editpost);
               modalEdit.classList.toggle('modal-close-edit');
 

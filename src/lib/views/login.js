@@ -1,4 +1,4 @@
-import { loginUsers, loginGoogle } from '../index.js';
+import { loginUsers, loginGoogle } from '../index.js'; // se importan las funciones de login user y loin google
 
 export const loginCuentaGoogle = () => {
   const templateGoogle = `
@@ -26,7 +26,7 @@ export const loginCuentaGoogle = () => {
       <button id="boton-go-register" Inicial"><a href="#/registration">Registrarte</a></button>
       <footer>@Luminar 2021</footer>
   `;
-  //  setTimeout(() => {
+
   const divLogin = document.createElement('div');
   divLogin.innerHTML = templateGoogle;
 
@@ -45,30 +45,26 @@ export const loginCuentaGoogle = () => {
         window.location.hash = '#/home';
       })
       .catch((error) => {
-        /* validaciones de firebase */
+        // validaciones de firebase
         const errorCode = error.code;
         switch (errorCode) {
           case 'auth/user-not-found':
-            messageContainer.setAttribute('class', 'error');
             messageContainer.innerHTML = '❌ Usuario no registrado';
             break;
 
           case 'auth/wrong-password':
-            messageContainer.setAttribute('class', 'error');
             messageContainer.innerHTML = '❌ Contraseña incorrecta';
             break;
 
           case 'auth/invalid-email':
-            messageContainer.setAttribute('class', 'error');
             messageContainer.innerHTML = '❌ Correo inválido';
             break;
           default:
-            // ok
         }
       });
   });
 
-  /* Quitar el mensaje de error cuando el usuario escriba */
+  // Quitar el mensaje de error cuando el usuario escriba
   const clearErrorMessage = (e) => {
     if (e.target.tagName === 'INPUT') {
       messageContainer.innerHTML = '';
@@ -92,16 +88,3 @@ export const loginCuentaGoogle = () => {
   });
   return divLogin;
 };
-
-/* const ingresoUsuarios = document.querySelector('#boton-ingresar');
-ingresoUsuarios.addEventListener('click', () => {
-  ingreso();
-});
-
-    const registrarUsuarios = document.querySelector('#boton-google');
-    registrarUsuarios.addEventListener('click', () => {
-      login();
-    });
-  }, 1000);
-  return templateGoogle;
-}; */
