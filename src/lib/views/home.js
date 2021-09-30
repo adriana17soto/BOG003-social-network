@@ -57,6 +57,18 @@ export const home = () => {
     }
   });
 
+  function transformDate(date) {
+    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    const fecha = new Date(date);
+    const year = fecha.getFullYear();
+    const month = fecha.getMonth();
+    const day = fecha.getDate();
+    const hour = fecha.getHours();
+    const minute = fecha.getMinutes();
+
+    return `${year}/${months[month]}/${day} ${hour}:${minute}`;
+  }
+
   // obterner los post en tiempo real
   getPost().onSnapshot((response) => {
     const containerPosts = divHome.querySelector('#publicar');
@@ -183,7 +195,7 @@ export const home = () => {
       btnEdit.forEach((btn) => {
         btn.addEventListener('click', async () => {
           console.log('editing');
-          //await updatepost();
+          //  await updatepost();
           modalEdit.classList.toggle('modal-close-edit');
 
           setTimeout(() => {
@@ -218,14 +230,3 @@ export const home = () => {
   });
   return divHome;
 };
-function transformDate(date) {
-  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-  const fecha = new Date(date);
-  const year = fecha.getFullYear();
-  const month = fecha.getMonth();
-  const day = fecha.getDate();
-  const hour = fecha.getHours();
-  const minute = fecha.getMinutes();
-
-  return year + '/' + months[month] + '/' + day + '  ' + hour + ':' + minute;
-}
