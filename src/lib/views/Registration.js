@@ -12,10 +12,7 @@ export const registrar = () => {
 
         <form method="post" id="container-login">
         <input type="text" id="name" placeholder="Nombre y apellido" required/>
-          <input type="email" id="email" placeholder="Correo Electrónico" required/>
-          <span class="icon-eye">
-          <i class="fas fa-eye-slash"></i>
-          </span>
+          <input type="email" id="email" placeholder="Correo Electrónico" required/>          
           <input type="password" id="password" placeholder="Contraseña" required/>
           <input type="password" id="passwordConf" placeholder="Confirma tu contraseña" required/>
           <p id="message"></p>
